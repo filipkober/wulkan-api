@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node app.ts",
-    "start": "node dist/app.js"
+    "start": "node dist/app.js",
+    "build": "tsc"
   },
   "author": "Filip Kober",
   "license": "ISC",
