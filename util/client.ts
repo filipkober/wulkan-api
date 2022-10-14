@@ -23,5 +23,5 @@ export const initClient = async () => {
     client = new VulcanHebe(keystore, AccountTools.loadFromJsonFile("account.json"));
     await client.selectStudent();
     isInitialized = true;
-    console.log('Client initialized');
+    console.log('Server initialized');
 };
