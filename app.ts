@@ -29,11 +29,12 @@ http.createServer(app).listen(Number(port) + 1, () => {
     console.log(`HTTP Server running on port ${Number(port) + 1}`);
 });
 
-if(privateKey && certificate)
+if(privateKey && certificate){
+https.globalAgent.options.ca = require('ssl-root-cas/latest').create();
 https.createServer(creds, app).listen(port, async () => {
     console.log(`Server listening on port ${port}`);
 });
-
+}
 initClient();
 
 app.use(limiter);
