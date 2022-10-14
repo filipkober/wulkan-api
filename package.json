@@ -14,6 +14,7 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-rate-limit": "^6.6.0",
     "vulcan-api-js": "^3.0.0"
   },
   "devDependencies": {

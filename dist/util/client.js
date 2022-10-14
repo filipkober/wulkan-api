@@ -16,26 +16,25 @@ exports.initClient = exports.client = void 0;
 const vulcan_api_js_1 = require("vulcan-api-js");
 const fs_1 = __importDefault(require("fs"));
 let isInitialized = false;
-const { TOKEN, SYMBOL, PIN } = process.env;
 const initClient = () => __awaiter(void 0, void 0, void 0, function* () {
+    const { TOKEN, SYMBOL, PIN } = process.env;
     if (exports.client)
         return console.warn('Client already initialized');
     if (!fs_1.default.existsSync('keystore.json')) {
         const keystore = new vulcan_api_js_1.Keystore();
-        keystore.init().then(() => {
+        yield keystore.init().then(() => {
             keystore.dumpToJsonFile("keystore.json");
         });
     }
     const keystore = new vulcan_api_js_1.Keystore();
     keystore.loadFromJsonFile("keystore.json");
     if (!fs_1.default.existsSync('account.json')) {
-        (0, vulcan_api_js_1.registerAccount)(keystore, TOKEN, SYMBOL, PIN).then(account => {
-            vulcan_api_js_1.AccountTools.dumpToJsonFile(account, "account.json");
-        });
+        const account = yield (0, vulcan_api_js_1.registerAccount)(keystore, TOKEN, SYMBOL, PIN);
+        vulcan_api_js_1.AccountTools.dumpToJsonFile(account, "account.json");
     }
     exports.client = new vulcan_api_js_1.VulcanHebe(keystore, vulcan_api_js_1.AccountTools.loadFromJsonFile("account.json"));
     yield exports.client.selectStudent();
     isInitialized = true;
-    console.log('Client initialized');
+    console.log('Server initialized');
 });
 exports.initClient = initClient;
