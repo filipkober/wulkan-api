@@ -1,0 +1,23 @@
+{
+  "name": "wulkan-api",
+  "version": "1.0.0",
+  "description": "fetching basic info about school",
+  "main": "app.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node app.ts",
+    "start": "node dist/app.js"
+  },
+  "author": "Filip Kober",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "vulcan-api-js": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/node": "^18.8.5",
+    "typescript": "^4.8.4"
+  }
+}
