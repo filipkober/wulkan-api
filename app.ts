@@ -7,8 +7,8 @@ import http from 'http';
 
 require('dotenv').config();
 
-const privateKey = fs.existsSync('key.pem') ? fs.readFileSync('key.pem') : undefined;
-const certificate = fs.existsSync('cert.pem') ? fs.readFileSync('cert.pem') : undefined;
+const privateKey = fs.existsSync('./cert/key.pem') ? fs.readFileSync('./cert/key.pem') : undefined;
+const certificate = fs.existsSync('./cert/cert.pem') ? fs.readFileSync('./cert/cert.pem') : undefined;
 
 const { TOKEN, SYMBOL, PIN } = process.env;
 if(!TOKEN || !SYMBOL || !PIN) {
