@@ -7,8 +7,8 @@ import http from 'http';
 
 require('dotenv').config();
 
-const privateKey = fs.readFileSync('private.pem', 'utf8') || undefined;
-const certificate = fs.readFileSync('certificate.pem', 'utf8') || undefined;
+const privateKey = fs.existsSync('key.pem') ? fs.readFileSync('key.pem') : undefined;
+const certificate = fs.existsSync('cert.pem') ? fs.readFileSync('cert.pem') : undefined;
 
 const { TOKEN, SYMBOL, PIN } = process.env;
 if(!TOKEN || !SYMBOL || !PIN) {
@@ -24,6 +24,7 @@ http.createServer(app).listen(Number(port) + 1, () => {
     console.log(`HTTP Server running on port ${Number(port) + 1}`);
 });
 
+if(privateKey && certificate)
 https.createServer(creds, app).listen(port, async () => {
     console.log(`Server listening on port ${port}`);
 });
