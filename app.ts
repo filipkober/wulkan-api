@@ -31,6 +31,7 @@ http.createServer(app).listen(Number(port) + 1, () => {
 
 if(privateKey && certificate){
 https.globalAgent.options.ca = require('ssl-root-cas').create();
+https.globalAgent.options.rejectUnauthorized = false;
 https.createServer(creds, app).listen(port, async () => {
     console.log(`Server listening on port ${port}`);
 });
